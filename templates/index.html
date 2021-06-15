@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h3>Wikipedia Table Scraper</h3>
+
+<p><b>Parameters:</b></p>
+
+<ol>
+    <li>
+        <p><b>Wikipedia Endpoint:</b><br> 
+            This is the endpoint for the actual Wikipedia to scrap the table from. <br>
+
+            - Endpoint: Microsoft_Macro_Assembler <br>
+            - URL: https://en.wikipedia.org/wiki/Microsoft_Macro_Assembler
+        </p>
+    </li>
+    <li>
+        <p><b>Table Number:</b><br> 
+            If the Wikipedia page has multiple tables, select which table to pull. Indexed at 1.<br>
+
+            Example: 1 - Would pull the first table on the `100_metres` Wikipedia page.<br>
+        </p>
+    </li>
+</ol>
+
+{% endblock %}
