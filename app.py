@@ -1,9 +1,7 @@
 from flask import Flask, render_template, jsonify
 from flask_restful import Api, Resource, abort
-from bs4 import BeautifulSoup
-import csv
 import requests
-import json
+import pandas as pd
 
 app = Flask(__name__)
 api = Api(app)
@@ -21,23 +19,18 @@ class parse_table(Resource):
     # Function to pull the table based on the endpoint url provided
     def get(self, search, table_num):
 
-        tables = []
-
+        # Define Wikipedia url
         wikipedia_page = "https://en.wikipedia.org/wiki/" + search
 
         # Verification
         resp = requests.get(wikipedia_page)
         check_link(resp)
 
-        soup = BeautifulSoup(resp.content, 'html.parser')
-        table_data = soup.find_all('table')
+        # Using pandas to read and prase the table elements from Wikipedia
+        tables = pd.read_html(wikipedia_page)
 
-        headers = [header.text for header in table.find_all('th')]
-        results = [{headers[i]: cell for i, cell in enumerate(row.find_all('td'))}
-                    for row in table.find_all('tr')]
-        print(table)
-
-        return tables
+        # Return table indexed by request paramerters 
+        return jsonify(tables[table_num].to_json())
 
 @app.route('/')
 def description(): 
