@@ -12,17 +12,45 @@ Following API endpoints are exposed:
 2) `search/slug/table_num`: (required) - The index of the table to pull from the page
 
 ## Example: 
-`
+API request - GET - `http://wikipedia-table-scraper.herokuapp.com/search/C_(programming_language)/1`
+
+Returns: 
+```
+{
+    Year:{ 
+            0: 1972,
+            1: 1978, 
+            2: 1989, 
+            3: 1999, 
+            4: 2005,
+            5: 2017, 
+            6: TBD
+    }, 
+    C Standard: { 
+        0: Birth, 
+        1: K&R C, 
+        2: ANSI C and ISO C, 
+        3: C99, 
+        4: C11, 
+        5: C17, 
+        6: C2x
+    }
+```
 
 ## Building and running
 
+1) Install dependencies: 
 ```
-npm install
-JWT_SECRET=foo TODO_API_PORT=8082  npm start
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-## Usage
+2) Run app: 
+``` 
+python app.py
+```
 
-```
- curl -X POST -H "Authorization: Bearer $token" 127.0.0.1:8082/todos -d '{"content": "deal with that"}'
-```
+## License
+
+MIT
