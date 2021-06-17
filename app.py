@@ -36,7 +36,7 @@ class parse_table(Resource):
 def description(): 
     return render_template('index.html')
 
-api.add_resource(parse_table, "/<string:search>/<int:table_num>")
+api.add_resource(parse_table, "search/<string:search>/<int:table_num>")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
