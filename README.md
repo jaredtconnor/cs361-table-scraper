@@ -1,6 +1,6 @@
 # Wikipedia table scraping microservice
 
-This is a basic API that pulls tables from (Wikipedia)[https://www.wikipedia.org] pages. This service is written in Python. There are only GET methods implemented and all responses return a dictionary/JSON object to be utilized within other services.
+This is a basic API that pulls tables from [Wikipedia](https://www.wikipedia.org) pages. This service is written in Python. There are only GET methods implemented and all responses return a dictionary/JSON object to be utilized within other services.
 
 Following API endpoints are exposed:
 
