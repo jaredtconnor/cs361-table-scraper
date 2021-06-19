@@ -34,11 +34,34 @@ class parse_table(Resource):
         # Return table indexed by request paramerters 
         return data
 
+# Second class to parse table and filter based upon Wikipedia input
+class filter_table(Resource):
+
+    # Function to pull the table based on the endpoint url provided
+    def get(self, search, table_num, top_n):
+
+        # Define Wikipedia url
+        wikipedia_page = "https://en.wikipedia.org/wiki/" + search
+
+        # Verification
+        resp = requests.get(wikipedia_page)
+        check_link(resp)
+
+        # Using pandas to read and prase the table elements from Wikipedia
+        tables = pd.read_html(wikipedia_page)
+        filtered_table = tables[table_num].head(n = top_n)
+
+        data = filtered_table.to_dict()
+
+        # Return table indexed by request paramerters 
+        return data
+
 @app.route('/')
 def description(): 
     return render_template('index.html')
 
 api.add_resource(parse_table, "/search/<string:search>/<int:table_num>")
+api.add_resource(filter_table, "/filter/<string:search>/<int:table_num>/<int:top_n>")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
