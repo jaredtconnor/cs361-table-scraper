@@ -49,7 +49,12 @@ class filter_table(Resource):
 
         # Using pandas to read and prase the table elements from Wikipedia
         tables = pd.read_html(wikipedia_page)
-        filtered_table = tables[table_num].head(n = top_n)
+
+        if top_n < 0: 
+            filtered_table = tables[table_num].tail(n = top_n)
+
+        else: 
+            filtered_table = tables[table_num].head(n = top_n)
 
         data = filtered_table.to_dict()
 
