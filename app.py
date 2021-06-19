@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, json, render_template, jsonify
 from flask_restful import Api, Resource, abort
 import requests
 import pandas as pd
@@ -29,8 +29,10 @@ class parse_table(Resource):
         # Using pandas to read and prase the table elements from Wikipedia
         tables = pd.read_html(wikipedia_page)
 
+        data = tables[table_num].to_dict()
+
         # Return table indexed by request paramerters 
-        return jsonify(tables[table_num].to_json())
+        return data
 
 @app.route('/')
 def description(): 
