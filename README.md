@@ -9,7 +9,7 @@ Following API endpoints are exposed:
 ## Parameters: 
 
 1) `/search/slug`: (required) - Endpoint of the specific Wikipedia page that contains the tables to parse
-2) `search/slug/table_num`: (required) - The index of the table to pull from the page
+2) `/search/slug/table_num`: (required) - The index of the table to pull from the page
 
 ## Example: 
 API request - GET - `http://wikipedia-table-scraper.herokuapp.com/search/C_(programming_language)/1`
