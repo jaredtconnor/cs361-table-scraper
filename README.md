@@ -6,10 +6,14 @@ Following API endpoints are exposed:
 
 - `GET /search` - Searches based upon the Wikipedia slug (i.e. - The page for [https://en.wikipedia.org/wiki/100_metres](https://en.wikipedia.org/wiki/100_metres) would be the `100_metres` slug)
 
+- `GET /filter` - Same implementation as the `search` endpoing, but allows for the additional parameter, `top_n`, which filters the top of $n$ rows in the table. 
+
+
 ## Parameters: 
 
 1) `/search/slug`: (required) - Endpoint of the specific Wikipedia page that contains the tables to parse
 2) `/search/slug/table_num`: (required) - The index of the table to pull from the page
+3) `filter/slug/table_num/top_n`: (required) - Integer representing the top _n_ rows to select from the table
 
 ## Example: 
 API request - GET - `http://wikipedia-table-scraper.herokuapp.com/search/C_(programming_language)/1`
